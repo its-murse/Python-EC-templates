@@ -1,0 +1,23 @@
+import subprocess
+
+# Define the IP range to scan
+ip_range = "192.168.1.1-192.168.1.10"  # Modify this range as needed
+
+# Define the command to execute Angry IP Scanner
+command = f"ipscan.exe -f:csv -o result.csv -q -s {ip_range}"
+
+# Execute the command using subprocess
+try:
+    subprocess.run(command, shell=True, check=True)
+    print("Scan completed successfully. Check 'result.csv' for output.")
+except subprocess.CalledProcessError as e:
+    print(f"Error: {e}")
+
+#Modify ip_range to specify the IP range you want to scan.
+#Update ipscan.exe with the correct path to Angry IP Scanner's executable on your system.
+#The -f:csv flag specifies the output format as CSV.
+#-o result.csv indicates the output file where the scan results will be saved.
+#-q runs the scan quietly (without the GUI).
+#-s {ip_range} specifies the IP range to be scanned.
+#This script utilizes the subprocess.run() function to execute Angry IP Scanner from Python.
+#It runs the scan based on the provided IP range and saves the results in a CSV file named result.csv.
