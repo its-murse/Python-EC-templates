@@ -1,0 +1,20 @@
+import nmap
+
+# Create a PortScanner object
+scanner = nmap.PortScanner()
+
+# Define the target IP range or hostname
+target = '127.0.0.1'
+
+# Perform a basic scan on the target
+scanner.scan(target, arguments='-p 1-1024')
+
+# Print scan results
+for host in scanner.all_hosts():
+    print(f"Host: {host}")
+    print(f"State: {scanner[host].state()}")
+    for proto in scanner[host].all_protocols():
+        print(f"Protocol: {proto}")
+        ports = scanner[host][proto].keys()
+        for port in ports:
+            print(f"Port: {port} - State: {scanner[host][proto][port]['state']}")
