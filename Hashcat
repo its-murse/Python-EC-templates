@@ -1,0 +1,18 @@
+import subprocess
+
+# Define the Hashcat command to execute
+hashcat_command = "hashcat -m 0 -a 0 hashes.txt rockyou.txt"
+
+try:
+    # Execute the Hashcat command using subprocess
+    subprocess.run(hashcat_command, shell=True, check=True)
+    print("Hashcat command executed successfully.")
+except subprocess.CalledProcessError as e:
+    print(f"Error: {e}")
+
+#-m 0 specifies the hash type (in this case, MD5).
+#-a 0 indicates the attack mode (straight mode, trying all combinations from a given charset).
+#hashes.txt is the file containing the hashes to be cracked.
+#rockyou.txt is the wordlist used for password guessing.
+#Replace hashes.txt with the file containing the hashes you want to crack and rockyou.txt with the path to the wordlist you want to use.
+#The command and parameters should be adjusted based on the hash type and the attack mode you're targeting.
