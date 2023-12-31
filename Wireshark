@@ -1,0 +1,11 @@
+import pyshark
+
+# Capture packets on a specific interface (change 'eth0' to your interface)
+capture = pyshark.LiveCapture(interface='eth0')
+
+# Start capturing packets (change '10' to the number of packets you want to capture)
+capture.sniff(packet_count=10)
+
+# Print packet details
+for packet in capture:
+    print(packet)
